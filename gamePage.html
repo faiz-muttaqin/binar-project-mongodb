@@ -93,12 +93,14 @@
           const bot = option[Math.floor(Math.random() * option.length)];
           return bot;
         }
-        activeElement(id) {
-          document.getElementById(id).style.backgroundColor = "#C4C4C4";
-        }
-        pasiveElement(id) {
-          document.getElementById(id).style.backgroundColor = "transparent";
-        }
+
+        //Arrow Function, Change Id to Active/Grey Background
+        activeElement = (id) =>
+          (document.getElementById(id).style.backgroundColor = "#C4C4C4");
+        //Arrow Function, Change Id to transparent Background
+        pasiveElement = (id) =>
+          (document.getElementById(id).style.backgroundColor = "transparent");
+
         setElement(g, h, i, j) {
           document.getElementById("VStext").style.display = g;
           document.getElementById("P1Win").style.display = h;

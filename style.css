@@ -506,175 +506,6 @@ select:-webkit-autofill:focus {
   transition: background-color 5000s ease-in-out 0s;
 }
 
-@media screen and (max-width: 992px) {
-  #features {
-    height: 100vh;
-    background-image: radial-gradient(
-        51.1% 80.48% at 30.85% 53.65%,
-        rgba(0, 0, 0, 0.719) 0%,
-        rgba(0, 0, 0, 0.714) 19.2%,
-        rgba(4, 5, 6, 0.789) 47.48%,
-        rgb(8, 10, 11) 99.74%
-      ),
-      url("img/3third-img.jpeg");
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-    display: flex;
-    position: relative;
-    flex-basis: 50%;
-    align-items: flex-start;
-    justify-content: end;
-  }
-
-  #aboutP {
-    flex-direction: column;
-  }
-
-  .aboutC1 {
-    width: 100%;
-  }
-
-  .aboutC2 {
-    width: 100%;
-  }
-
-  #rowBP {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    flex-basis: 50%;
-  }
-
-  #rowBP .kolom1 {
-    margin-left: 0;
-    width: 100;
-  }
-
-  #rowBP .kolom2 {
-    width: 100%;
-    margin-top: 5px;
-  }
-
-  .scoreCard1 {
-    width: 350px;
-    margin-bottom: 50px;
-    margin-left: 5vw;
-    margin-top: 1vw;
-  }
-
-  .scoreCard2 {
-    visibility: hidden;
-    display: none;
-  }
-
-  .scoreCard3 {
-    visibility: hidden;
-    display: none;
-  }
-
-  .footerDivCol {
-    visibility: hidden;
-    display: none;
-  }
-
-  .contentPage4 {
-    margin-left: 2vw;
-    width: 60%;
-    margin-top: 30%;
-  }
-
-  .scrbtext {
-    font-size: 10vw;
-  }
-
-  .footerSubCont {
-    width: 60vw;
-  }
-
-  .footerbutton {
-    width: 30%;
-  }
-
-  .footermedscon {
-    padding-left: 10%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    align-items: center;
-  }
-
-  .footerLastList {
-    margin-left: 7%;
-    display: flex;
-
-    flex-direction: column-reverse;
-    bottom: 10%;
-  }
-
-  .nodec {
-    visibility: hidden;
-    display: none;
-  }
-
-  .acordParentSet {
-    margin-left: 10px;
-  }
-
-  .FooterMailDiv {
-    display: flex;
-    width: 130%;
-  }
-
-  .profilPictureDecor,
-  .profilPictureDecor2 {
-    visibility: hidden;
-    display: none;
-  }
-}
-
-@media screen and (max-width: 620px) {
-  .FooterMailDiv {
-    display: flex;
-    width: 130%;
-    flex-direction: column;
-  }
-
-  .form__field {
-    width: 100%;
-  }
-
-  .form__group {
-    width: 100%;
-  }
-
-  .footerbutton {
-    width: 90%;
-  }
-
-  .nodec {
-    visibility: hidden;
-    display: none;
-  }
-
-  .footerLastList {
-    font-size: 14px;
-  }
-
-  .scoreCard1 {
-    width: 70vw;
-    margin-bottom: 50px;
-    margin-left: 5vw;
-  }
-
-  .profilPictureDecor,
-  .profilPictureDecor2 {
-    visibility: hidden;
-    display: none;
-  }
-}
-
 #gamePBody {
   background-color: #9c835f;
 }
@@ -847,4 +678,212 @@ select:-webkit-autofill:focus {
 
 .RfImg {
   width: 50px;
+}
+
+@media screen and (max-width: 992px) {
+  #features {
+    height: 100vh;
+    background-image: radial-gradient(
+        51.1% 80.48% at 30.85% 53.65%,
+        rgba(0, 0, 0, 0.719) 0%,
+        rgba(0, 0, 0, 0.714) 19.2%,
+        rgba(4, 5, 6, 0.789) 47.48%,
+        rgb(8, 10, 11) 99.74%
+      ),
+      url("img/3third-img.jpeg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    display: flex;
+    position: relative;
+    flex-basis: 50%;
+    align-items: flex-start;
+    justify-content: end;
+  }
+
+  #aboutP {
+    flex-direction: column;
+  }
+
+  .aboutC1 {
+    width: 100%;
+  }
+
+  .aboutC2 {
+    width: 100%;
+  }
+
+  #rowBP {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    flex-basis: 50%;
+  }
+
+  #rowBP .kolom1 {
+    margin-left: 0;
+    width: 100;
+  }
+
+  #rowBP .kolom2 {
+    width: 100%;
+    margin-top: 5px;
+  }
+
+  .scoreCard1 {
+    width: 350px;
+    margin-bottom: 50px;
+    margin-left: 5vw;
+    margin-top: 1vw;
+  }
+
+  .scoreCard2 {
+    visibility: hidden;
+    display: none;
+  }
+
+  .scoreCard3 {
+    visibility: hidden;
+    display: none;
+  }
+
+  .footerDivCol {
+    visibility: hidden;
+    display: none;
+  }
+
+  .contentPage4 {
+    margin-left: 2vw;
+    width: 60%;
+    margin-top: 30%;
+  }
+
+  .scrbtext {
+    font-size: 10vw;
+  }
+
+  .footerSubCont {
+    width: 60vw;
+  }
+
+  .footerbutton {
+    width: 30%;
+  }
+
+  .footermedscon {
+    padding-left: 10%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+  }
+
+  .footerLastList {
+    margin-left: 7%;
+    display: flex;
+
+    flex-direction: column-reverse;
+    bottom: 10%;
+  }
+
+  .nodec {
+    visibility: hidden;
+    display: none;
+  }
+
+  .acordParentSet {
+    margin-left: 10px;
+  }
+
+  .FooterMailDiv {
+    display: flex;
+    width: 130%;
+  }
+
+  .profilPictureDecor,
+  .profilPictureDecor2 {
+    visibility: hidden;
+    display: none;
+  }
+}
+
+@media screen and (max-width: 720px) {
+  .FooterMailDiv {
+    display: flex;
+    width: 130%;
+    flex-direction: column;
+  }
+
+  .form__field {
+    width: 100%;
+  }
+
+  .form__group {
+    width: 100%;
+  }
+
+  .footerbutton {
+    width: 90%;
+  }
+
+  .nodec {
+    visibility: hidden;
+    display: none;
+  }
+
+  .footerLastList {
+    font-size: 14px;
+  }
+
+  .scoreCard1 {
+    width: 70vw;
+    margin-bottom: 50px;
+    margin-left: 5vw;
+  }
+
+  .profilPictureDecor,
+  .profilPictureDecor2 {
+    visibility: hidden;
+    display: none;
+  }
+
+  .optionBtnP1 {
+    height: 91.5px;
+    width: 100px;
+    border-radius: 15px;
+  }
+
+  .optionP1 {
+    width: 50px;
+  }
+
+  .optionBtnCom {
+    height: 91.5px;
+    width: 100px;
+    border-radius: 15px;
+  }
+  #P1Win {
+    font-size: 19px;
+    font-weight: 600;
+    width: 125px;
+    height: 73px;
+    border-radius: 5px;
+  }
+
+  #ComWin {
+    font-size: 19px;
+    font-weight: 600;
+    width: 125px;
+    height: 73px;
+    border-radius: 5px;
+  }
+
+  #Draw {
+    font-size: 19px;
+    font-weight: 600;
+    width: 125px;
+    height: 73px;
+    border-radius: 5px;
+  }
 }
