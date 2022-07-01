@@ -41,4 +41,18 @@ Routes.post("/login", (req, res) => {
   }
 });
 
+Routes.post("/signup", (req, res) => {
+  if (req.body != null) {
+    dataUser.push(req.body);
+    res.send({
+      message: "successfull to Register",
+      statusCode: 200,
+      dataCreated: req.body,
+      data: dataUser,
+    });
+  } else {
+    res.status(400);
+  }
+});
+
 module.exports = Routes;
