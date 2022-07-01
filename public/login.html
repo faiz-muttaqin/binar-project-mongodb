@@ -27,7 +27,7 @@
       <div class="d-flex justify-content-center h-100">
         <div class="card">
           <div class="card-header">
-            <h3>Sign In</h3>
+            <h3>Log In</h3>
             <!-- <div class="d-flex justify-content-end social_icon">
               <span><i class="fab fa-facebook-square"></i></span>
               <span><i class="fab fa-google-plus-square"></i></span>
@@ -78,7 +78,7 @@
           </div>
           <div class="card-footer">
             <div class="d-flex justify-content-center links">
-              Don't have an account?<a href="#">Sign Up</a>
+              Don't have an account?<a href="./signup.html">Sign Up</a>
             </div>
             <div class="d-flex justify-content-center">
               <a href="#">Forgot your password?</a>
@@ -89,6 +89,12 @@
     </div>
 
     <script>
+      let dataUser = getCookie("user-data");
+      if (dataUser == null) {
+        console.log("data user tidak ditemukan");
+      } else {
+        window.location.href = "/";
+      }
       function loginBtn() {
         let username = document.getElementById("username").value;
         let password = document.getElementById("password").value;
@@ -107,34 +113,43 @@
             .then((result) => {
               if (result.fase) {
                 document.getElementById("LogIdent").style.color = "#FFFF00";
+                window.location.href = "/";
               } else {
                 document.getElementById("LogIdent").style.color = "#ff0000";
               }
-
               document.getElementById("LogIdent").textContent = result.message;
               console.log(result);
+              setCookie("user-data", JSON.stringify(result.resultData, 1));
             })
             .catch((error) => console.log(error));
         }
       }
 
-      // var peoples = [
-      //   { name: "bob", dinner: "pizza" },
-      //   { name: "john", dinner: "sushi" },
-      //   { name: "larry", dinner: "hummus" },
-      //   { name: "john", dinner: "pie" },
-      // ];
-
-      // var filteredResult = peoples.find(
-      //   (val) => val.name === "john" && val.dinner === "sushi"
-      // );
-      // let cds = filteredResult ? true : false;
-      // if (filteredResult) {
-      //   cds = true;
-      // } else {
-      //   cds = false;
-      // }
-      // console.log(cds);
+      // console.log(dataUser);
+      function setCookie(name, value, days) {
+        var expires = "";
+        if (days) {
+          var date = new Date();
+          date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000);
+          expires = "; expires=" + date.toUTCString();
+        }
+        document.cookie = name + "=" + (value || "") + expires + "; path=/";
+      }
+      function getCookie(name) {
+        var nameEQ = name + "=";
+        var ca = document.cookie.split(";");
+        for (var i = 0; i < ca.length; i++) {
+          var c = ca[i];
+          while (c.charAt(0) == " ") c = c.substring(1, c.length);
+          if (c.indexOf(nameEQ) == 0)
+            return c.substring(nameEQ.length, c.length);
+        }
+        return null;
+      }
+      function eraseCookie(name) {
+        document.cookie =
+          name + "=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;";
+      }
     </script>
   </body>
 </html>

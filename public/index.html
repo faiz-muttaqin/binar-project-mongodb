@@ -42,11 +42,14 @@
         <div class="col"></div>
         <div class="col"></div>
         <div class="navbar-nav col">
-          <a class="nav-link"
-            href="https://accounts.google.com/signup/v2/webcreateaccount?continue=https%3A%2F%2Faccounts.google.com%2FManageAccount%3Fnc%3D1&dsh=S1543715360%3A1652975563618403&biz=false&flowName=GlifWebSignIn&flowEntry=SignUp">SIGN
+          <a id="signUp" class="nav-link"
+            href="./signup.html">SIGN
             UP</a>
-          <a class="nav-link"
+          <a id="logIn"class="nav-link"
             href="login.html">LOGIN</a>
+          <a id="username" href="#" class="nav-link"></a>
+          <a id="logOut" href="#" onclick="logOut()" class="nav-link">LOG OUT</a>
+
         </div>
 
       </div>
@@ -60,8 +63,7 @@
       <h1 class="text-white display-4 fw-bold mrgn-bottom">PLAY TRADITIONAL GAME</h1>
       <h1 class="text-white fs-5 mrgn-bottom">Experience New Traditional Game Play</h1>
 
-      <a href="gamePage.html"><button type="button" class="btn btn-warning fw-bold mainBtn">PLAY
-          NOW</button></a>
+      <button type="button" onclick="playNow()" class="btn btn-warning fw-bold mainBtn">PLAY NOW</button>
 
       <a href="#about">
         <h6 class="thestory">THE STORY</h6>
@@ -307,16 +309,9 @@
             <p class="card-text">“Snoop Dogg Playing The Wildly Entertaining ‘SOS’ Is Ridiculous.”</p>
             <h6 class="dateText">December 24, 2018</h6>
           </div>
-
         </div>
-
-
-
       </div>
-
     </div>
-
-
   </div>
 
   <!-- FOOTER PAGE  -->
@@ -366,14 +361,6 @@
                   class="fa-brands fa-youtube footerYT"></i></a>
                   <a class="link-light" href="https://www.twitch.tv/"><i
                     class="fa-brands fa-twitch footerTC"></i></a>
-              
-            <!-- <ul class="list-unstyled d-flex">
-              <li class="ms-3"></li>
-              <li class="ms-3"></li>
-              <li class="ms-3"></li>
-              <li class="ms-3"></li>
-              <li class="ms-3"></li>
-            </ul> -->
         </div>
 
         <div class="py-4 my-3 border-top footerLastList">
@@ -405,6 +392,59 @@
 
   <script src="https://kit.fontawesome.com/b7c76aea7d.js" crossorigin="anonymous"></script>
 
+  <script>
+    let dataUser = getCookie("user-data");
+    if (dataUser == null) {
+      console.log("data user tidak ditemukan");
+      document.getElementById("username").style.display = "none";
+      document.getElementById("logOut").style.display = "none";
+    } else {
+      document.getElementById("signUp").style.display = "none";
+      document.getElementById("logIn").style.display = "none";
+      
+      document.getElementById("username").innerHTML = `Hi, ${JSON.parse(getCookie("user-data")).user}`;
+    }
+    function logOut(){
+      eraseCookie("user-data");
+      window.location.href = "/";
+    }
+
+    function playNow(){
+      if (dataUser == null) {
+        alert("You Haven't logged in yet...");
+        window.location.href = "/login.html";
+        
+      } else {
+        window.location.href = "/gamePage.html";
+      }
+    }
+
+    
+    function setCookie(name, value, days) {
+        var expires = "";
+        if (days) {
+          var date = new Date();
+          date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000);
+          expires = "; expires=" + date.toUTCString();
+        }
+        document.cookie = name + "=" + (value || "") + expires + "; path=/";
+      }
+      function getCookie(name) {
+        var nameEQ = name + "=";
+        var ca = document.cookie.split(";");
+        for (var i = 0; i < ca.length; i++) {
+          var c = ca[i];
+          while (c.charAt(0) == " ") c = c.substring(1, c.length);
+          if (c.indexOf(nameEQ) == 0)
+            return c.substring(nameEQ.length, c.length);
+        }
+        return null;
+      }
+      function eraseCookie(name) {
+        document.cookie =
+          name + "=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;";
+      }
+  </script>
 
 </body>
 

@@ -680,6 +680,10 @@ select:-webkit-autofill:focus {
   width: 50px;
 }
 
+#playerName {
+  align-self: center;
+}
+
 @media screen and (max-width: 992px) {
   #features {
     height: 100vh;
