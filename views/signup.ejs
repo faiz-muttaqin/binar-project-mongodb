@@ -70,12 +70,8 @@
               .then((result) => {
                 console.log(result);
                 document.getElementById("statusReg").innerHTML =
-                  result.message +
-                  "  " +
-                  `<a href="./login.html">Login Now</a>`;
+                  result.message + "  " + `<a href="./login">Login Now</a>`;
                 document.getElementById("statusReg").style.color = "#FFFF00";
-
-                console.log(result.data); //untuk cek user dan pass apa saja yg aktif
               })
               .catch((error) => console.log(error));
           } else {

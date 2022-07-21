@@ -1,0 +1,1 @@
+CREATE TABLE `traditional_game`.`user_game` (`id` INT(11) NOT NULL AUTO_INCREMENT , `user` VARCHAR(45) NOT NULL , `email` VARCHAR(45) NOT NULL , `pass` VARCHAR(45) NOT NULL , `token` VARCHAR(45) NOT NULL , `status` VARCHAR(10) NOT NULL DEFAULT 'active' , PRIMARY KEY (`id`)) ENGINE = InnoDB;

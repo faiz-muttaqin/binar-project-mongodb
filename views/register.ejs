@@ -1,0 +1,137 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/register.css" />
+  </head>
+  <body>
+    <div class="form_wrapper">
+      <div class="form_container">
+        <div class="title_container">
+          <h2>Registration Form</h2>
+        </div>
+        <div class="row clearfix">
+          <div class="">
+            <form action="/register" method="post">
+              <div class="row clearfix">
+                <div class="col_half">
+                  <div class="input_field">
+                    <span><i aria-hidden="true" class="fa fa-user"></i></span>
+                    <input
+                      type="text"
+                      name="first_name"
+                      placeholder="First Name"
+                    />
+                  </div>
+                </div>
+                <div class="col_half">
+                  <div class="input_field">
+                    <span><i aria-hidden="true" class="fa fa-user"></i></span>
+                    <input
+                      type="text"
+                      name="last_name"
+                      placeholder="Last Name"
+                      required
+                    />
+                  </div>
+                </div>
+              </div>
+              <div class="input_field">
+                <span><i aria-hidden="true" class="fa fa-envelope"></i></span>
+                <input type="email" name="email" placeholder="Email" required />
+              </div>
+              <div class="input_field">
+                <span><i aria-hidden="true" class="fa fa-envelope"></i></span>
+                <input
+                  type="text"
+                  name="username"
+                  placeholder="Username"
+                  required
+                />
+              </div>
+
+              <div class="input_field">
+                <span><i aria-hidden="true" class="fa fa-lock"></i></span>
+                <input
+                  id="password"
+                  type="password"
+                  name="password"
+                  placeholder="Password"
+                  required
+                />
+              </div>
+              <div class="input_field">
+                <span><i aria-hidden="true" class="fa fa-lock"></i></span>
+                <input
+                  id="confirm_password"
+                  type="password"
+                  name="confirm_password"
+                  placeholder="Re-type Password"
+                  required
+                />
+              </div>
+              <span id="message"></span>
+              <div class="input_field">
+                <span><i aria-hidden="true" class="fa fa-envelope"></i></span>
+                <input type="text" name="phone" placeholder="Phone" required />
+              </div>
+              <div>
+                <label for="start">Date of Birth :</label>
+                <input
+                  type="date"
+                  id="birth"
+                  name="birth"
+                  value="2000-01-01"
+                  min="1970-01-31"
+                  max="2010-01-01"
+                />
+              </div>
+              <div class="input_field radio_option">
+                <input type="radio" name="radiogroup1" id="rd1" />
+                <label for="rd1">Male</label>
+                <input type="radio" name="radiogroup2" id="rd2" />
+                <label for="rd2">Female</label>
+              </div>
+
+              <div class="input_field">
+                <span><i aria-hidden="true" class="fa fa-envelope"></i></span>
+                <input
+                  type="text"
+                  name="address"
+                  placeholder="Address"
+                  required
+                />
+              </div>
+
+              <div class="input_field checkbox_option">
+                <input type="checkbox" id="cb1" />
+                <label for="cb1">I agree with terms and conditions</label>
+              </div>
+
+              <input class="button" type="submit" value="Register" />
+            </form>
+            <!-- <input
+              onclick="btnclick()"
+              class="button"
+              type="button"
+              value="Register"
+            /> -->
+          </div>
+        </div>
+      </div>
+    </div>
+    <p class="credit">
+      Developed by <a href="/" target="_blank">Traditional Game</a>
+    </p>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script>
+      $("#password, #confirm_password").on("keyup", function () {
+        if ($("#password").val() === $("#confirm_password").val()) {
+          $("#message").html("Matching").css("color", "green");
+        } else $("#message").html("Not Matching").css("color", "red");
+      });
+    </script>
+  </body>
+</html>

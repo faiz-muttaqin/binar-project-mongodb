@@ -42,11 +42,11 @@
         <div class="col"></div>
         <div class="col"></div>
         <div class="navbar-nav col">
-          <a id="signUp" class="nav-link"
-            href="./signup.html">SIGN
-            UP</a>
+          <a id="admin" href="admin"><button type="button" class="btn btn-warning">User Management</button></a>
+          <a id="register" class="nav-link"
+            href="/register">REGISTER</a>
           <a id="logIn"class="nav-link"
-            href="login.html">LOGIN</a>
+            href="/login">LOGIN</a>
           <a id="username" href="#" class="nav-link"></a>
           <a id="logOut" href="#" onclick="logOut()" class="nav-link">LOG OUT</a>
 
@@ -394,15 +394,23 @@
 
   <script>
     let dataUser = getCookie("user-data");
+
+    
     if (dataUser == null) {
       console.log("data user tidak ditemukan");
       document.getElementById("username").style.display = "none";
       document.getElementById("logOut").style.display = "none";
+      document.getElementById("admin").style.display = "none";
     } else {
-      document.getElementById("signUp").style.display = "none";
+      document.getElementById("register").style.display = "none";
       document.getElementById("logIn").style.display = "none";
       
-      document.getElementById("username").innerHTML = `Hi, ${JSON.parse(getCookie("user-data")).user}`;
+      document.getElementById("username").innerHTML = `Hi, ${JSON.parse(getCookie("user-data"))[0].user}`;
+
+      if(JSON.parse(getCookie("user-data"))[0].user != 'admin'){
+        document.getElementById("admin").style.display = "none";
+      }
+      
     }
     function logOut(){
       eraseCookie("user-data");
@@ -412,10 +420,10 @@
     function playNow(){
       if (dataUser == null) {
         alert("You Haven't logged in yet...");
-        window.location.href = "/login.html";
+        window.location.href = "/login";
         
       } else {
-        window.location.href = "/gamePage.html";
+        window.location.href = "/games";
       }
     }
 

@@ -57,7 +57,7 @@
 
     <!-- Header -->
     <div class="gameTitle">
-      <a class="GPBackLink" href="index.html">&lt;</a>
+      <a class="GPBackLink" href="/">&lt;</a>
       <img id="GPlogo" src="img/gamePLogo.png" alt="logoLamanGame" />
       <h1 id="gamePjudul">ROCK PAPER SCRISSORS</h1>
     </div>
@@ -76,11 +76,11 @@
       let dataUser = getCookie("user-data");
       if (dataUser == null) {
         alert("You Haven't logged in yet...");
-        window.location.href = "/login.html";
+        window.location.href = "/login";
       } else {
-        document.getElementById("playerName").innerHTML = JSON.parse(
-          getCookie("user-data")
-        ).user;
+        document.getElementById("playerName").innerHTML = `${
+          JSON.parse(getCookie("user-data"))[0].user
+        }`;
       }
       function getCookie(name) {
         var nameEQ = name + "=";
