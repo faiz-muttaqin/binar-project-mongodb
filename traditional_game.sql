@@ -75,9 +75,9 @@ CREATE TABLE `user_id` (
 
 INSERT INTO `user_id` (`id`, `user`, `email`, `pass`, `token`, `status`) VALUES
 (1, 'admin', 'admin@gmail.com', 'admin', '', 'active'),
-(40, 'Sakura', 'sakuraH@gmail.com', '12345', 'JkeoJiKoedlzlEmc', 'active'),
-(41, 'Naruto', 'uzumakinaruto@gmail.com', '12345', 'gtJuWRqTRw7a0ywb', 'active'),
-(42, 'Sasuke', 'sasukeuchiha@gmail.com', '12345', 'gLR6Gp8myPWZ2t7N', 'active');
+(40, 'sakura', 'sakuraH@gmail.com', '12345', 'JkeoJiKoedlzlEmc', 'active'),
+(41, 'naruto', 'uzumakinaruto@gmail.com', '12345', 'gtJuWRqTRw7a0ywb', 'active'),
+(42, 'sasuke', 'sasukeuchiha@gmail.com', '12345', 'gLR6Gp8myPWZ2t7N', 'active');
 
 -- --------------------------------------------------------
 
