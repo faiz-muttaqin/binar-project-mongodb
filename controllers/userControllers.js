@@ -28,6 +28,65 @@ exports.signupPage = (req, res) => {
 exports.registerPage = (req, res) => {
   res.render("register");
 };
+exports.userprofile = (req, res) => {
+  // Connect to DB
+  pool.getConnection((err, connection) => {
+    if (err) throw err;
+    console.log("connected as ID " + connection.threadId);
+
+    //User Connection
+    connection.query(
+      `SELECT * FROM user_id WHERE id = ? `,
+      [req.params.id],
+      (err, rows1) => {
+        //When Done with the connection, release it
+        connection.release();
+
+        if (!err) {
+          //User Connection
+          connection.query(
+            `SELECT * FROM user_profile WHERE user_id = ? `,
+            [req.params.id],
+            (err, rows2) => {
+              if (!err) {
+                //User Connection
+                connection.query(
+                  `SELECT * FROM user_history WHERE user_id = ? `,
+                  [req.params.id],
+                  (err, rows3) => {
+                    if (!err) {
+                      let date = new Date(rows2[0].birth);
+                      let tgl = `${("0" + date.getDate()).slice(-2)} - ${(
+                        "0" +
+                        (date.getMonth() + 1)
+                      ).slice(-2)} - ${date.getFullYear()}`;
+
+                      res.render("userecord", {
+                        rows1,
+                        rows2,
+                        rows3,
+                        tgl,
+                      }); // rows, removedUser
+                    } else {
+                      console.log(err);
+                    }
+                    console.log("The data from user table: \n", rows3);
+                  }
+                );
+              } else {
+                console.log(err);
+              }
+              console.log("The data from user table: \n", rows2);
+            }
+          );
+        } else {
+          console.log(err);
+        }
+        console.log("The data from user table: \n", rows1);
+      }
+    );
+  });
+};
 
 exports.admin = (req, res) => {
   // Connect to DB
@@ -217,22 +276,6 @@ exports.register = async (req, res) => {
                         res.render("register", {
                           alert: "User added successfully.",
                         });
-                        connection.query(
-                          `INSERT INTO user_history SET user_id =?, user = ?, win = ?, draw = ?, lose = ?, type_player = ?`,
-                          [rowsCheck[0].id, username, 0, 0, 0, "user"],
-                          (err, rows) => {
-                            if (!err) {
-                              res.render("register", {
-                                alert: "User added successfully.",
-                              });
-                            } else {
-                              console.log(err);
-                              res.render("register", {
-                                alert3: "User failed to register.",
-                              });
-                            }
-                          }
-                        );
                       } else {
                         console.log(err);
                         res.render("register", {
@@ -303,15 +346,7 @@ exports.edit = (req, res) => {
                 "0" +
                 (date.getMonth() + 1)
               ).slice(-2)}-${("0" + (date.getDate() + 1)).slice(-2)}`;
-              // let male;
-              // let female;
-              // if (rowsProfile[0].gender === "male") {
-              //   male = true;
-              //   female = false;
-              // } else {
-              //   male = false;
-              //   female = true;
-              // }
+
               let identifier = rowsID[0].id;
               if (!err) {
                 res.render("edit-user", {
@@ -378,7 +413,7 @@ exports.update = async (req, res) => {
               ],
               (err, rows) => {
                 if (!err) {
-                  res.render("edit-user", {
+                  res.render("login", {
                     alert: "User added successfully.",
                   });
                 } else {
@@ -428,4 +463,65 @@ exports.viewall = (req, res) => {
       }
     );
   });
+};
+
+exports.gamesResult = (req, res) => {
+  if (req.body != null) {
+    pool.getConnection((err, connection) => {
+      if (err) throw err;
+      console.log("connected as ID " + connection.threadId);
+      //User Connection
+      connection.query(
+        `SELECT * FROM user_id WHERE id = ? `,
+        [req.params.id],
+        (err, user_id) => {
+          //When Done with the connection, release it
+          connection.release();
+          if (!err) {
+            //User Connection
+            let timestamp = Date.now();
+            connection.query(
+              `INSERT INTO user_history SET user_id =?, user = ?, win = ?, draw = ?, lose = ?, scheme = ?, oponent = ?, timestamp = ?`,
+              [
+                user_id[0].id,
+                user_id[0].user,
+                req.body.win,
+                req.body.draw,
+                req.body.lose,
+                req.body.scheme,
+                req.body.oponent,
+                timestamp,
+              ],
+              (err, rows) => {
+                if (!err) {
+                  res.send({
+                    message: "sucessfull to upload data",
+                    resultData: rows,
+                    statusCode: 200,
+                    fase: true,
+                  });
+                } else {
+                  console.log(err);
+                  res.send({
+                    message: "failed to login, wrong username/password",
+                    fase: false,
+                  });
+                }
+                console.log("The data from user table: \n", rows);
+              }
+            );
+          } else {
+            console.log(err);
+            res.send({
+              message: "failed to login, wrong username/password",
+              fase: false,
+            });
+          }
+          console.log("The data from user table: \n", user_id);
+        }
+      );
+    });
+  } else {
+    res.status(400);
+  }
 };

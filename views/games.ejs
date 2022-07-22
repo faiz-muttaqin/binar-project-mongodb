@@ -11,7 +11,7 @@
       crossorigin="anonymous"
     />
 
-    <title>TRADITIONAL</title>
+    <title>MINI GAME</title>
 
     <!-- Private CSS -->
     <link rel="stylesheet" href="./css/style.css" />
@@ -139,7 +139,15 @@
           const botOpt = this.botOption;
           const playID = ["playB", "playK", "playG"];
           const comID = ["comB", "comK", "comG"];
-          const BGK = ["🪨", "📜", "✂️"];
+
+          const BGK = ["✊🏻", "✋🏻", "✌🏻"];
+
+          let win = 0;
+          let draw = 0;
+          let lose = 0;
+          let oponent = "BOT";
+          let scheme = "🪨 vs 🪨";
+          let timestamp = Date.now();
 
           for (let i = 0; i < playID.length; i++) {
             for (let j = 0; j < comID.length; j++) {
@@ -149,19 +157,19 @@
                   this.activeElement(comID[j]);
                   if (i - j == 0) {
                     this.Draw = "flex";
-                    console.log(
-                      `P1 ${BGK[i]} vs com ${BGK[j]} (Tak Ada yang Menang)`
-                    );
+                    scheme = `P1 ${BGK[i]} vs BOT ${BGK[j]} (DRAW)`;
+                    draw = 1;
+                    // console.log(scheme);
                   } else if (i - j == -1 || i - j == 2) {
                     this.ComWin = "flex";
-                    console.log(
-                      `P1 ${BGK[i]} vs com ${BGK[j]} (Com yang Menang)`
-                    );
+                    scheme = `P1 ${BGK[i]} vs BOT ${BGK[j]} (BOT WIN)`;
+                    lose = 1;
+                    // console.log(scheme);
                   } else if (i - j == 1 || i - j == -2) {
                     this.P1win = "flex";
-                    console.log(
-                      `P1 ${BGK[i]} vs com ${BGK[j]} (Player1 yang Menang)`
-                    );
+                    scheme = `P1 ${BGK[i]} vs BOT ${BGK[j]} (P1 WIN)`;
+                    win = 1;
+                    // console.log(scheme);
                   }
                 } else {
                   this.pasiveElement(comID[j]);
@@ -176,14 +184,45 @@
             }
           }
           this.setElement(this.VStext, this.P1win, this.ComWin, this.Draw);
+          let userCookie = getCookie("user-data");
+          fetch(`/games/${JSON.parse(userCookie)[0].id}`, {
+            method: "post",
+            headers: { "Content-type": "application/json" },
+            body: JSON.stringify({
+              win: win,
+              draw: draw,
+              lose: lose,
+              scheme: scheme,
+              oponent: oponent,
+              timestamp: timestamp,
+            }),
+          })
+            .then((response) => {
+              return response.json();
+            })
+            .then((result) => {
+              console.log(scheme);
+            })
+            .catch((error) => console.log(error));
         }
       }
-
       function pickOption(p) {
         const ready = new Ready();
         ready.setPlayerOpt = p;
         ready.setBotOpt = ready.BotBrain();
         ready.winCalculation();
+      }
+
+      function getCookie(name) {
+        var nameEQ = name + "=";
+        var ca = document.cookie.split(";");
+        for (var i = 0; i < ca.length; i++) {
+          var c = ca[i];
+          while (c.charAt(0) == " ") c = c.substring(1, c.length);
+          if (c.indexOf(nameEQ) == 0)
+            return c.substring(nameEQ.length, c.length);
+        }
+        return null;
       }
     </script>
   </body>

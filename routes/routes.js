@@ -16,4 +16,8 @@ routes.post("/register", userControllers.register);
 routes.get("/edituser/:id", userControllers.edit);
 routes.post("/edituser/:id", userControllers.update);
 
+routes.get("/userprofile/:id", userControllers.userprofile);
+routes.post("/games/:id", userControllers.gamesResult);
+// routes.post("/edituser", userControllers.update);
+
 module.exports = routes;

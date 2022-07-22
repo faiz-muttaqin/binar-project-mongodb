@@ -42,6 +42,7 @@
         <div class="col"></div>
         <div class="col"></div>
         <div class="navbar-nav col">
+          <a id="userprofile" href=""><button type="button" class="btn btn-warning">User Profile</button></a>
           <a id="admin" href="admin"><button type="button" class="btn btn-warning">User Management</button></a>
           <a id="register" class="nav-link"
             href="/register">REGISTER</a>
@@ -390,28 +391,31 @@
     integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
     crossorigin="anonymous"></script>
 
-  <script src="https://kit.fontawesome.com/b7c76aea7d.js" crossorigin="anonymous"></script>
+  <!-- <script src="https://kit.fontawesome.com/b7c76aea7d.js" crossorigin="anonymous"></script> -->
 
   <script>
     let dataUser = getCookie("user-data");
-
     
     if (dataUser == null) {
       console.log("data user tidak ditemukan");
       document.getElementById("username").style.display = "none";
       document.getElementById("logOut").style.display = "none";
       document.getElementById("admin").style.display = "none";
+      document.getElementById("userprofile").style.display = "none";
     } else {
       document.getElementById("register").style.display = "none";
       document.getElementById("logIn").style.display = "none";
       
       document.getElementById("username").innerHTML = `Hi, ${JSON.parse(getCookie("user-data"))[0].user}`;
-
+      document.getElementById('userprofile').href = `/userprofile/${JSON.parse(dataUser)[0].id}`;
       if(JSON.parse(getCookie("user-data"))[0].user != 'admin'){
         document.getElementById("admin").style.display = "none";
+      }else{
+        document.getElementById("userprofile").style.display = "none";
       }
       
     }
+    
     function logOut(){
       eraseCookie("user-data");
       window.location.href = "/";

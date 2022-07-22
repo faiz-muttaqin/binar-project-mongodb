@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 21 Jul 2022 pada 15.14
+-- Waktu pembuatan: 22 Jul 2022 pada 13.35
 -- Versi server: 10.4.24-MariaDB
 -- Versi PHP: 8.1.6
 
@@ -34,15 +34,25 @@ CREATE TABLE `user_history` (
   `win` int(11) NOT NULL,
   `draw` int(11) NOT NULL,
   `lose` int(11) NOT NULL,
-  `type_player` varchar(45) NOT NULL
+  `scheme` varchar(45) NOT NULL,
+  `oponent` varchar(45) NOT NULL,
+  `timestamp` bigint(45) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data untuk tabel `user_history`
 --
 
-INSERT INTO `user_history` (`id`, `user_id`, `user`, `win`, `draw`, `lose`, `type_player`) VALUES
-(1, 40, 'sakura', 0, 0, 0, 'user');
+INSERT INTO `user_history` (`id`, `user_id`, `user`, `win`, `draw`, `lose`, `scheme`, `oponent`, `timestamp`) VALUES
+(11, 40, 'sakuraharuno', 1, 0, 0, 'P1 ✊???? vs BOT ✌???? (P1 WIN)', 'BOT', 1658487287325),
+(12, 40, 'sakuraharuno', 0, 0, 1, 'P1 ✊???? vs BOT ✋???? (BOT WIN)', 'BOT', 1658487288641),
+(13, 40, 'sakuraharuno', 1, 0, 0, 'P1 ✊???? vs BOT ✌???? (P1 WIN)', 'BOT', 1658487397522),
+(14, 40, 'sakuraharuno', 1, 0, 0, 'P1 ✋???? vs BOT ✊???? (P1 WIN)', 'BOT', 1658487398349),
+(15, 40, 'sakuraharuno', 0, 1, 0, 'P1 ✋???? vs BOT ✋???? (DRAW)', 'BOT', 1658488169016),
+(16, 40, 'sakuraharuno', 0, 0, 1, 'P1 ✊???? vs BOT ✋???? (BOT WIN)', 'BOT', 1658488932987),
+(17, 40, 'sakuraharuno', 0, 1, 0, 'P1 ✋???? vs BOT ✋???? (DRAW)', 'BOT', 1658488933803),
+(18, 40, 'sakuraharuno', 1, 0, 0, 'P1 ✌???? vs BOT ✋???? (P1 WIN)', 'BOT', 1658488934183),
+(20, 40, 'sakuraharuno', 0, 1, 0, 'P1 ✋???? vs BOT ✋???? (DRAW)', 'BOT', 1658489265647);
 
 -- --------------------------------------------------------
 
@@ -65,7 +75,9 @@ CREATE TABLE `user_id` (
 
 INSERT INTO `user_id` (`id`, `user`, `email`, `pass`, `token`, `status`) VALUES
 (1, 'admin', 'admin@gmail.com', 'admin', '', 'active'),
-(40, 'sakura', 'sakuraH@gmail.com', '1234', 'JkeoJiKoedlzlEmc', 'active');
+(40, 'Sakura', 'sakuraH@gmail.com', '12345', 'JkeoJiKoedlzlEmc', 'active'),
+(41, 'Naruto', 'uzumakinaruto@gmail.com', '12345', 'gtJuWRqTRw7a0ywb', 'active'),
+(42, 'Sasuke', 'sasukeuchiha@gmail.com', '12345', 'gLR6Gp8myPWZ2t7N', 'active');
 
 -- --------------------------------------------------------
 
@@ -89,7 +101,9 @@ CREATE TABLE `user_profile` (
 --
 
 INSERT INTO `user_profile` (`id`, `user_id`, `first_name`, `last_name`, `phone`, `birth`, `gender`, `address`) VALUES
-(18, 40, 'sakura', 'haruno', '081234567890', 946771200000, 'female', '12345678901');
+(18, 40, 'sakura', 'haruno', '081234567890', 947376000000, 'female', '12345678901123456'),
+(19, 41, 'Naruto', 'Uzumaki', '081234567890', 949190400000, 'male', 'Konohagakure'),
+(20, 42, 'Sasuke', 'Uchiha', '08123456789', 947030400000, 'male', 'Kohohagakure, Uchiha');
 
 --
 -- Indexes for dumped tables
@@ -121,19 +135,19 @@ ALTER TABLE `user_profile`
 -- AUTO_INCREMENT untuk tabel `user_history`
 --
 ALTER TABLE `user_history`
-  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT untuk tabel `user_id`
 --
 ALTER TABLE `user_id`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
 
 --
 -- AUTO_INCREMENT untuk tabel `user_profile`
 --
 ALTER TABLE `user_profile`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
