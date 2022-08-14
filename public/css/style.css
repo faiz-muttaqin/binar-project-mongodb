@@ -515,7 +515,7 @@ select:-webkit-autofill:focus {
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
-  display: flex;
+  display: none;
   position: relative;
   justify-content: center;
   align-items: center;
@@ -527,7 +527,7 @@ select:-webkit-autofill:focus {
   flex-direction: row;
   position: absolute;
   margin-left: 37px;
-  margin-top: 12px;
+  margin-top: 10px;
   top: 1.5%;
 }
 
@@ -535,24 +535,19 @@ select:-webkit-autofill:focus {
   margin-top: -35px;
   text-decoration: none;
   color: #724c21;
-  font-size: 80px;
+  font-size: 60px;
   font-weight: bold;
 }
 
-.backLogo {
-  height: 50px;
-  width: 50px;
-}
-
 #GPlogo {
-  height: 72px;
-  width: 72px;
+  height: 45px;
+  width: 45px;
   margin-left: 20px;
 }
 
 #gamePjudul {
   color: #f9b23d;
-  align-self: center;
+  align-self: auto;
   margin-left: 20px;
 }
 
@@ -890,4 +885,178 @@ select:-webkit-autofill:focus {
     height: 73px;
     border-radius: 5px;
   }
+}
+
+/* game room */
+.main {
+  height: 100vh;
+  background-color: #9c835f;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  display: flex;
+  position: relative;
+  justify-content: center;
+  align-items: center;
+}
+/* * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+} */
+
+.startScreen {
+  width: 600px;
+  margin: 0 auto;
+}
+
+.startScreen h1 {
+  text-align: center;
+  font-size: 3rem;
+  color: #111;
+  padding-top: 30px;
+  margin-bottom: 40px;
+}
+
+.gameplayChoices button {
+  padding: 5px 25px;
+  color: white;
+  display: block;
+  margin: 0 auto;
+  margin-bottom: 25px;
+  border-color: #724c21;
+  border-width: 3px;
+}
+
+.startScreen button:hover {
+  background: #fff200e1;
+  cursor: pointer;
+  border-color: #fff200e1;
+}
+
+.createRoomBox {
+  display: none;
+}
+
+.join-with-id,
+.createRoomBox {
+  width: 70%;
+  margin: 0 auto;
+}
+
+.join-with-id input,
+.createRoomBox input {
+  width: 80%;
+  height: 35px;
+  border: 1px solid #333;
+  outline: none;
+  padding: 5px;
+  margin: 0;
+}
+
+.join-with-id button,
+.createRoomBox button {
+  width: 20%;
+  margin: 0;
+  height: 35px;
+  background: #189116;
+  color: white;
+  outline: none;
+  border: none;
+}
+
+.join-with-id .cancel-action,
+.createRoomBox .cancel-action {
+  width: 80%;
+  display: block;
+  margin: 0 auto;
+  margin-top: 20px;
+  background: #ccc;
+  color: #333;
+}
+
+.cancel-action:hover {
+  background: #ddd !important;
+}
+
+.waitMessage {
+  padding-top: 30px;
+  margin: 0 auto;
+  margin-bottom: 20px;
+}
+
+.waitMessage p {
+  font-weight: 400;
+  text-align: center;
+}
+
+.player {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  background: #123456;
+  color: white;
+  padding: 10px;
+  font-weight: normal;
+}
+
+.player .dot {
+  width: 10px;
+  height: 10px;
+  background: red;
+  border-radius: 50%;
+  margin-right: 5px;
+}
+
+.player .connected {
+  background: green;
+}
+
+.player:first-child {
+  margin-right: 30px;
+}
+
+.choice {
+  font-size: 5rem;
+  margin-right: 40px;
+}
+
+.choice:last-child {
+  margin-right: 0;
+}
+
+.choice:hover {
+  cursor: pointer;
+  transform: scale(1.3);
+}
+.joinBoxRoom {
+  display: none;
+}
+
+.joinBoxRoom .joinRandomBtn {
+  width: 80%;
+  display: block;
+  margin: 0 auto;
+  height: 35px;
+  background: #189116;
+  color: white;
+  outline: none;
+  border: none;
+  margin-top: 30px;
+}
+
+.errorMessage {
+  width: 500px;
+  margin: 0 auto;
+  margin-top: 40px;
+  display: none;
+  background: rgb(209, 61, 61);
+  color: white;
+  padding: 20px;
+}
+
+.errorMessage p {
+  text-align: center;
+  font-size: 1.1rem;
 }

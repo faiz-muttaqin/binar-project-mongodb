@@ -25,6 +25,10 @@ exports.signupPage = (req, res) => {
   res.render("signup");
 };
 
+exports.roomPage = (req, res) => {
+  res.render("room");
+};
+
 exports.registerPage = (req, res) => {
   res.render("register");
 };
@@ -484,7 +488,7 @@ exports.gamesResult = (req, res) => {
               `INSERT INTO user_history SET user_id =?, user = ?, win = ?, draw = ?, lose = ?, scheme = ?, oponent = ?, timestamp = ?`,
               [
                 user_id[0].id,
-                user_id[0].user,
+                req.body.user,
                 req.body.win,
                 req.body.draw,
                 req.body.lose,
@@ -500,12 +504,14 @@ exports.gamesResult = (req, res) => {
                     statusCode: 200,
                     fase: true,
                   });
+                  console.log("Upload Success");
                 } else {
                   console.log(err);
                   res.send({
                     message: "failed to login, wrong username/password",
                     fase: false,
                   });
+                  console.log("Upload Failed");
                 }
                 console.log("The data from user table: \n", rows);
               }

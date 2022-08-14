@@ -1,5 +1,13 @@
 import file traditional_game.sql ke phpMyAdmin
 
+disarankan login menggunakan 2 browser atau dalam mode berbeda (mode samar dan normal)
+login dengan akun yang berbeda
+user : password
+admin : admin
+sakura : 12345
+sasuke : 12345
+naruto : 12345
+
 
 ATAU
 

@@ -5,6 +5,8 @@ const userControllers = require("../controllers//userControllers");
 routes.get("/", userControllers.index);
 routes.get("/games", userControllers.games);
 routes.get("/login", userControllers.loginPage);
+routes.get("/room", userControllers.roomPage);
+
 // routes.get("/signup", userControllers.signupPage);
 routes.get("/admin", userControllers.admin);
 routes.post("/login", userControllers.loginAuth);
