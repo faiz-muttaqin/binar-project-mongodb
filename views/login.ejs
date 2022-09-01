@@ -112,6 +112,7 @@
             })
             .then((result) => {
               if (result.fase) {
+                console.log(result.resultData);
                 document.getElementById("LogIdent").style.color = "#FFFF00";
                 setCookie("user-data", JSON.stringify(result.resultData, 1));
                 window.location.href = "/";

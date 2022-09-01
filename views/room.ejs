@@ -374,25 +374,19 @@
         enemyChoose(enemyChoice);
         document.getElementById("VStext").style.display = "none";
         document.getElementById("Draw").style.display = "flex";
-        let scheme = `YOU ${iconChoose(enemyChoice)} 
-        vs ENEMY ${iconChoose(enemyChoice)} (DRAW)`;
-        saveToDataBase(0, 1, 0, scheme);
+        saveToDataBase(0, 1, 0, enemyChoice, enemyChoice);
       });
 
       socket.on("player-1-wins", ({ myChoice, enemyChoice }) => {
         document.getElementById("VStext").style.display = "none";
         if (playerId === 1) {
           enemyChoose(myChoice);
-          let scheme = `YOU ${iconChoose(enemyChoice)} 
-          vs ENEMY ${iconChoose(myChoice)} (WIN)`;
-          saveToDataBase(1, 0, 0, scheme);
+          saveToDataBase(1, 0, 0, enemyChoice, myChoice);
           document.getElementById("P1Win").style.display = "flex";
           myScorePoints++;
         } else {
           enemyChoose(enemyChoice);
-          let scheme = `YOU ${iconChoose(myChoice)} 
-          vs ENEMY ${iconChoose(enemyChoice)} (LOSE)`;
-          saveToDataBase(0, 0, 1, scheme);
+          saveToDataBase(0, 0, 1, myChoice, enemyChoice);
           document.getElementById("ComWin").style.display = "flex";
           enemyScorePoints++;
         }
@@ -404,16 +398,12 @@
         document.getElementById("VStext").style.display = "none";
         if (playerId === 2) {
           enemyChoose(enemyChoice);
-          let scheme = `YOU ${iconChoose(myChoice)} 
-          vs ENEMY ${iconChoose(enemyChoice)} (WIN)`;
-          saveToDataBase(1, 0, 0, scheme);
+          saveToDataBase(1, 0, 0, myChoice, enemyChoice);
           document.getElementById("P1Win").style.display = "flex";
           myScorePoints++;
         } else {
           enemyChoose(myChoice);
-          let scheme = `YOU ${iconChoose(enemyChoice)} 
-          vs ENEMY ${iconChoose(myChoice)} (LOSE)`;
-          saveToDataBase(0, 0, 1, scheme);
+          saveToDataBase(0, 0, 1, enemyChoice, myChoice);
           document.getElementById("ComWin").style.display = "flex";
           enemyScorePoints++;
         }
@@ -526,11 +516,14 @@
         document.getElementById("Draw").style.display = "none";
       }
 
-      function saveToDataBase(win, draw, lose, scheme) {
+      function saveToDataBase(win, draw, lose, choice1, choice2) {
         let timestamp = Date.now();
         let userCookie = getCookie("user-data");
         let user = JSON.parse(getCookie("user-data"))[0].user;
         let oponent = "";
+        let WLD = win == 1 ? "(WIN)" : draw == 1 ? "(DRAW)" : "(LOSE)";
+        let scheme = `YOU ${iconChoose(choice1)} 
+          vs ENEMY ${iconChoose(choice2)} ${WLD}`;
         if (userVSRoom[1] === user) {
           oponent = userVSRoom[0];
         } else if (userVSRoom[0] === user) {
@@ -538,7 +531,7 @@
         } else {
           oponent = "unknown";
         }
-        fetch(`/games/${JSON.parse(userCookie)[0].id}`, {
+        fetch(`/games/${JSON.parse(userCookie)[0]._id}`, {
           method: "post",
           headers: { "Content-type": "application/json" },
           body: JSON.stringify({

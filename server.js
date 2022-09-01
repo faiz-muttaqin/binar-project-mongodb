@@ -9,6 +9,9 @@ const io = socketio(server);
 
 const port = 7000;
 
+const connectDB = require("./server/database/connection");
+connectDB(); // MongoDB Connection
+
 require("dotenv").config();
 //middleWare
 app.use(morgan("dev"));
@@ -188,5 +191,5 @@ server.listen(port, () => {
 });
 
 //impor router dari routes
-const Routes = require("./routes/routes");
+const Routes = require("./server/routes/routes");
 app.use(Routes);

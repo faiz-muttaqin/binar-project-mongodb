@@ -187,7 +187,7 @@
           this.setElement(this.VStext, this.P1win, this.ComWin, this.Draw);
           let userCookie = getCookie("user-data");
           let user = JSON.parse(getCookie("user-data"))[0].user;
-          fetch(`/games/${JSON.parse(userCookie)[0].id}`, {
+          fetch(`/games/${JSON.parse(userCookie)[0]._id}`, {
             method: "post",
             headers: { "Content-type": "application/json" },
             body: JSON.stringify({

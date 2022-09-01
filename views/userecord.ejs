@@ -53,19 +53,19 @@
       <div class="card" style="width: 18rem;">
         <div class="card-body">
           <h5 class="card-title text-muted">Name</h5>
-          <h6 class="card-subtitle mb-2"><%= rows2[0].first_name %> <%= rows2[0].last_name %></h6>
+          <h6 class="card-subtitle mb-2"><%= data[0].first_name %> <%= data[0].last_name %></h6>
           <h5 class="card-title text-muted">Username</h5>
-          <h6 class="card-subtitle mb-2"><%= rows1[0].user %></h6>
+          <h6 class="card-subtitle mb-2"><%= data[0].user %></h6>
           <h5 class="card-title text-muted">Email</h5>
-          <h6 class="card-subtitle mb-2"><%= rows1[0].email %></h6>
+          <h6 class="card-subtitle mb-2"><%= data[0].email %></h6>
           <h5 class="card-title text-muted">Phone</h5>
-          <h6 class="card-subtitle mb-2"><%= rows2[0].phone %></h6>
+          <h6 class="card-subtitle mb-2"><%= data[0].phone %></h6>
           <h5 class="card-title text-muted">Date of Birth</h5>
           <h6 class="card-subtitle mb-2"><%= tgl %></h6>
           <h5 class="card-title text-muted">Gender</h5>
-          <h6 class="card-subtitle mb-2"><%= rows2[0].gender %></h6>
+          <h6 class="card-subtitle mb-2"><%= data[0].gender %></h6>
           <h5 class="card-title text-muted">Address</h5>
-          <h6 class="card-subtitle mb-2"><%= rows2[0].address %></h6>
+          <h6 class="card-subtitle mb-2"><%= data[0].address %></h6>
 
         </div>
       </div>
@@ -94,18 +94,20 @@
           </thead>
           <tbody id="userTable">
               <tr>
+                <% if(history){%>
                 <% let win = 0;
                 let draw = 0;
                 let lose = 0;
-                for(var i=0; i< rows3.length; i++) {
-                  win += rows3[i].win   
-                  draw += rows3[i].draw 
-                  lose += rows3[i].lose
+                for(var i=0; i< history.length; i++) {
+                  win += history[i].win   
+                  draw += history[i].draw 
+                  lose += history[i].lose
                 } %>
-                <td><%= rows1[0].user %></td>
+                <td><%= data[0].user %></td>
                 <td id="win"><%= win %></td>
                 <td id="draw"><%= draw %></td>
                 <td id="lose"><%= lose %></td>
+                <% }%>
               </tr>
               
           </tbody>
@@ -128,17 +130,18 @@
             </tr>
           </thead>
           <tbody id="userTable">
-            <% for(var i=0; i<rows3.length; i++) {%>
+            <% if(history){%>
+            <% for(var i=0; i<history.length; i++) {%>
               <tr>
-                <td><%= rows1[0].user %></td>
-                <td><%= rows3[i].win %></td>
-                <td><%= rows3[i].draw %></td>
-                <td><%= rows3[i].lose %></td>
-                <td><%= rows3[i].scheme %></td>
-                <td><%= rows3[i].oponent %></td>
-                <td><%= new Date(rows3[i].timestamp).toLocaleString() %></td>
+                <td><%= data[0].user %></td>
+                <td><%= history[i].win %></td>
+                <td><%= history[i].draw %></td>
+                <td><%= history[i].lose %></td>
+                <td><%= history[i].scheme %></td>
+                <td><%= history[i].oponent %></td>
+                <td><%= new Date(history[i].timestamp).toLocaleString() %></td>
               </tr>
-              <% } %>
+              <% }} %>
           </tbody>
         </table>
       </div>
@@ -161,9 +164,9 @@
       // let draw = 0;
       // let lose = 0;
       // for(var i=0; i<document.rows3.length; i++) {
-      //   win += document.rows3[i].win   
-      //   draw += document.rows3[i].draw 
-      //   lose += document.rows3[i].lose
+      //   win += document.history.win   
+      //   draw += document.history.draw 
+      //   lose += document.history.lose
       // } 
       // document.getElementById("win").innerHTML = win;
       // document.getElementById("draw").innerHTML = draw;
