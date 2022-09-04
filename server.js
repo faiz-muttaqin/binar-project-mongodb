@@ -3,6 +3,7 @@ const app = express();
 const morgan = require("morgan");
 const http = require("http");
 const socketio = require("socket.io");
+const cors = require("cors");
 const server = http.createServer(app);
 
 const io = socketio(server);
@@ -13,6 +14,7 @@ const connectDB = require("./server/database/connection");
 connectDB(); // MongoDB Connection
 
 require("dotenv").config();
+app.use(cors());
 //middleWare
 app.use(morgan("dev"));
 //middleware untuk akses get asset folder public di server

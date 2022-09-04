@@ -165,6 +165,7 @@
         event.preventDefault();
         // console.log(document.getElementById("rd1").value);
         // Simple PUT request with a JSON body using fetch
+        let gender = document.getElementsByName("gender");
         const requestOptions = {
           method: "PUT",
           headers: { "Content-Type": "application/json" },
@@ -173,12 +174,11 @@
             last_name: document.getElementById("last_name").value,
             email: document.getElementById("email").value,
             username: document.getElementById("username").value,
-            password: document.getElementById("password").value,
+            pass: document.getElementById("password").value,
             birth: document.getElementById("birth").value,
             phone: document.getElementById("phone").value,
             address: document.getElementById("address").value,
-            male: document.getElementById("rd1").value,
-            female: document.getElementById("rd2").value,
+            gender: gender[0].checked ? "male" : "female",
           }),
         };
         fetch("/users/<%= data.id %>", requestOptions)

@@ -32,7 +32,7 @@ exports.registerPage = (req, res) => {
   res.render("register");
 };
 
-exports.userprofile = (req, res) => {
+exports.userprofile = async (req, res) => {
   const id = req.params.id;
 
   userData
@@ -84,14 +84,15 @@ exports.userprofile = (req, res) => {
     });
 };
 
-exports.admin = (req, res) => {
+exports.admindata = async (req, res) => {
   userData
     .find({ status: "active" })
     .then((data) => {
       if (!data) {
         res.status(404).send({ resultData: "failed to get data" });
       } else {
-        res.render("admin", { resultData: data }); // rows, removedUser
+        // res.render("admin", { resultData: data }); // rows, removedUser
+        res.send(data);
       }
     })
     .catch((err) => {
@@ -101,7 +102,25 @@ exports.admin = (req, res) => {
     });
 };
 
-exports.loginAuth = (req, res) => {
+exports.admin = async (req, res) => {
+  userData
+    .find({ status: "active" })
+    .then((data) => {
+      if (!data) {
+        res.status(404).send({ resultData: "failed to get data" });
+      } else {
+        // res.render("admin", { resultData: data }); // rows, removedUser
+        res.render("admin", { resultData: data });
+      }
+    })
+    .catch((err) => {
+      res.status(500).send({
+        message: "Could not get data 500",
+      });
+    });
+};
+
+exports.loginAuth = async (req, res) => {
   let requestData = req.body;
   let User = requestData.username;
   let Pass = requestData.password;
@@ -132,7 +151,7 @@ exports.loginAuth = (req, res) => {
     });
 };
 
-exports.delete = (req, res) => {
+exports.delete = async (req, res) => {
   const id = req.params.id;
 
   userData
@@ -162,7 +181,7 @@ exports.register = async (req, res) => {
     last_name,
     email,
     username,
-    password,
+    pass,
     birth,
     phone,
     address,
@@ -176,7 +195,7 @@ exports.register = async (req, res) => {
     const user = new userData({
       user: username,
       email: email,
-      pass: password,
+      pass: pass,
       first_name: first_name,
       last_name: last_name,
       phone: phone,
@@ -215,7 +234,7 @@ exports.register = async (req, res) => {
   }
 };
 
-exports.find = (req, res) => {
+exports.find = async (req, res) => {
   if (req.query.id) {
     const id = req.query.id;
 
@@ -248,7 +267,7 @@ exports.find = (req, res) => {
 //________________________________________________________________________________________________
 
 //Edit user profile
-exports.edit = (req, res) => {
+exports.edit = async (req, res) => {
   const id = req.params.id;
 
   userData
@@ -270,6 +289,34 @@ exports.edit = (req, res) => {
       res.status(500).send({ message: "Error retrieving user with id " + id });
     });
 };
+exports.getUserById = async (req, res) => {
+  const id = req.params.id;
+
+  userData
+    .findById(id)
+    .then((data) => {
+      let date = new Date(data.birth);
+      let year = date.getFullYear();
+      let month = ("0" + (date.getMonth() + 1)).slice(-2);
+      let day = ("0" + date.getDate()).slice(-2);
+      let tgl = `${year}-${month}-${day}`;
+
+      if (!data) {
+        res.status(404).send({
+          data: `Error retrieving user with id ${id}`,
+          tgl: `Error retrieving user with id ${id}`,
+        });
+      } else {
+        res.send({ data, tgl });
+      }
+    })
+    .catch((err) => {
+      res.status(500).send({
+        data: `Error retrieving user with id ${id}`,
+        tgl: `Error retrieving user with id ${id}`,
+      });
+    });
+};
 
 //Update user profile
 exports.update = async (req, res) => {
@@ -278,19 +325,12 @@ exports.update = async (req, res) => {
     last_name,
     email,
     username,
-    password,
+    pass,
     birth,
     phone,
     address,
-    male,
-    female,
+    gender,
   } = req.body;
-  let gender;
-  if (male) {
-    gender = male;
-  } else {
-    gender = female;
-  }
 
   var date = new Date(birth); // some mock date
   var birthMilis = date.getTime();
@@ -299,15 +339,13 @@ exports.update = async (req, res) => {
     id: id,
     user: username,
     email: email,
-    pass: password,
+    pass: pass,
     first_name: first_name,
     last_name: last_name,
     phone: phone,
     birth: birthMilis,
     gender: gender,
     address: address,
-    token: maketoken(16),
-    status: "active",
   };
 
   if (!req.body) {
@@ -330,7 +368,7 @@ exports.update = async (req, res) => {
   }
 };
 
-exports.gamesResult = (req, res) => {
+exports.gamesResult = async (req, res) => {
   const { user, win, draw, lose, scheme, oponent, timestamp } = req.body;
 
   if (req.body != null) {
