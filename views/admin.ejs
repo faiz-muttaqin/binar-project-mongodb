@@ -142,7 +142,7 @@
       }
 
       function deleteUser(id){
-        fetch( `/users/${id}`, { method: 'DELETE' })
+        fetch( `/api/users/${id}`, { method: 'DELETE' })
             .then((res) => {alert('Delete successful')
             location.reload();});
       }

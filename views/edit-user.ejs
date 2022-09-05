@@ -181,7 +181,7 @@
             gender: gender[0].checked ? "male" : "female",
           }),
         };
-        fetch("/users/<%= data.id %>", requestOptions)
+        fetch("/api/users/<%= data.id %>", requestOptions)
           .then((response) => response.json())
           .then((data) => {
             alert(data.alert);

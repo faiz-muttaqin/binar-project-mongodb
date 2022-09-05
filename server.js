@@ -5,6 +5,10 @@ const http = require("http");
 const socketio = require("socket.io");
 const cors = require("cors");
 const server = http.createServer(app);
+const swaggerJSON = require("./tg-api-docs.json");
+const swaggerUI = require("swagger-ui-express");
+
+app.use("/api", swaggerUI.serve, swaggerUI.setup(swaggerJSON));
 
 const io = socketio(server);
 
